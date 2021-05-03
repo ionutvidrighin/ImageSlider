@@ -1,11 +1,3 @@
-/*
-const img1 = document.querySelector('#img1');
-const img2 = document.querySelector('#img2');
-const img3 = document.querySelector('#img3');
-const img4 = document.querySelector('#img4');
-const img5 = document.querySelector('#img5');
-*/
-
 
 const label1 = document.querySelector('#label1');
 const label2 = document.querySelector('#label2');
@@ -19,20 +11,35 @@ inputs.forEach((input) => {
     input.checked ? label1.classList.add('filled-button') : "";
 })
 
-
-var scrollAmount;
+const container = document.querySelector('.container');
 
 const arrowLeft = document.querySelector('.fa-chevron-circle-left');
 const arrowRight = document.querySelector('.fa-chevron-circle-right');
 
+arrowRight.addEventListener('click', () => {
+    arrowLeft.classList.remove('hidden');
+    let right = document.getElementById('right');
+    let scroll = container.scrollLeft += 700;
+    if (scroll === 2800) { 
+        right.classList.add('hidden');
+    }
+})
 
+arrowLeft.addEventListener('click', () => {
+    arrowRight.classList.remove('hidden');
+    let left = document.getElementById('left');
+    let scroll = container.scrollLeft -= 700;
+    if (scroll === 0) { 
+        left.classList.add('hidden');
+    }
+})
 
-document.querySelector('.container').addEventListener('scroll', (e) => {
-    scrollAmount = e.target.scrollLeft;
-    console.log(scrollAmount)
+container.addEventListener('scroll', (e) => {
+    let scrollAmount = e.target.scrollLeft;
 
     switch(scrollAmount) {
         case 0:
+        arrowLeft.classList.add('hidden');
         label1.classList.add('filled-button');
         label2.classList.remove('filled-button');
         label3.classList.remove('filled-button');
@@ -40,7 +47,9 @@ document.querySelector('.container').addEventListener('scroll', (e) => {
         label5.classList.remove('filled-button');
         break;
 
-        case 700: 
+        case 700:
+        arrowLeft.classList.remove('hidden');
+        arrowRight.classList.remove('hidden');
         label1.classList.remove('filled-button');
         label3.classList.remove('filled-button');
         label4.classList.remove('filled-button');
@@ -49,6 +58,8 @@ document.querySelector('.container').addEventListener('scroll', (e) => {
         break;
 
         case 1400:
+        arrowLeft.classList.remove('hidden');
+        arrowRight.classList.remove('hidden');
         label1.classList.remove('filled-button');
         label2.classList.remove('filled-button');
         label4.classList.remove('filled-button');
@@ -57,6 +68,8 @@ document.querySelector('.container').addEventListener('scroll', (e) => {
         break;
 
         case 2100:
+        arrowLeft.classList.remove('hidden');
+        arrowRight.classList.remove('hidden');
         label1.classList.remove('filled-button');
         label2.classList.remove('filled-button');
         label3.classList.remove('filled-button');
@@ -65,6 +78,7 @@ document.querySelector('.container').addEventListener('scroll', (e) => {
         break;
 
         case 2800:
+        arrowRight.classList.add('hidden');
         label1.classList.remove('filled-button');
         label2.classList.remove('filled-button');
         label3.classList.remove('filled-button');
@@ -72,10 +86,8 @@ document.querySelector('.container').addEventListener('scroll', (e) => {
         label5.classList.add('filled-button');
         break;
     }
-
 })
 
-console.log(scrollAmount)
 
 class Navigator {
     switchImage(label, nav1Btn, nav2Btn, nav3Btn, nav4Btn, nav5Btn) {
@@ -85,7 +97,6 @@ class Navigator {
                 console.log(element)
                 switch(element) {
                     case 'label1':
-                    scrollAmount = 0;
                     nav1Btn.classList.add('filled-button');
                     nav2Btn.classList.remove('filled-button');
                     nav3Btn.classList.remove('filled-button');
