@@ -19,6 +19,7 @@ body {
     height: 500px;
     overflow-y: hidden;
     overflow-x: scroll;
+    -webkit-scroll-snap-type: x mandatory;
     scroll-snap-type: x mandatory;
     position: relative;
     transition: 2s ease;
@@ -51,13 +52,14 @@ body {
     height: 100%;
     transition: 1.5s ease;
     -webkit-overflow-scrolling: touch;
+    -webkit-scroll-snap-align: start;
     scroll-snap-align: center;
 }
 
 .navigator {
     display: flex;
     position: absolute;
-    bottom: 180px;
+    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -86,7 +88,7 @@ body {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 350px;
+    bottom: 45%;
     font-size: 1.8rem;
     color: rgb(6, 170, 199);
 }
