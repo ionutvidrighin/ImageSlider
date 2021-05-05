@@ -3,39 +3,22 @@ const label1 = document.querySelector('#label1');
 const label2 = document.querySelector('#label2');
 const label3 = document.querySelector('#label3');
 const label4 = document.querySelector('#label4');
-const label5 = document.querySelector('#label5');
-let navigator = document.querySelectorAll('label');
+
+const navigators = document.querySelectorAll('label');
+const arrowLeft = document.querySelector('.fa-chevron-circle-left');
+const arrowRight = document.querySelector('.fa-chevron-circle-right');
 
 const inputs = document.querySelectorAll('input');
 inputs.forEach((input) => {
     input.checked ? label1.classList.add('filled-button') : "";
 })
 
+
 const container = document.querySelector('.container');
-
-const arrowLeft = document.querySelector('.fa-chevron-circle-left');
-const arrowRight = document.querySelector('.fa-chevron-circle-right');
-
-arrowRight.addEventListener('click', () => {
-    arrowLeft.classList.remove('hidden');
-    let right = document.getElementById('right');
-    let scroll = container.scrollLeft += 700;
-    if (scroll === 2800) { 
-        right.classList.add('hidden');
-    }
-})
-
-arrowLeft.addEventListener('click', () => {
-    arrowRight.classList.remove('hidden');
-    let left = document.getElementById('left');
-    let scroll = container.scrollLeft -= 700;
-    if (scroll === 0) { 
-        left.classList.add('hidden');
-    }
-})
 
 container.addEventListener('scroll', (e) => {
     let scrollAmount = e.target.scrollLeft;
+    console.log(e)
 
     switch(scrollAmount) {
         case 0:
@@ -44,64 +27,51 @@ container.addEventListener('scroll', (e) => {
         label2.classList.remove('filled-button');
         label3.classList.remove('filled-button');
         label4.classList.remove('filled-button');
-        label5.classList.remove('filled-button');
         break;
 
-        case 700:
+        case 640:
         arrowLeft.classList.remove('hidden');
         arrowRight.classList.remove('hidden');
         label1.classList.remove('filled-button');
         label3.classList.remove('filled-button');
         label4.classList.remove('filled-button');
-        label5.classList.remove('filled-button');
         label2.classList.add('filled-button');
         break;
 
-        case 1400:
+        case 1280:
         arrowLeft.classList.remove('hidden');
         arrowRight.classList.remove('hidden');
         label1.classList.remove('filled-button');
         label2.classList.remove('filled-button');
         label4.classList.remove('filled-button');
-        label5.classList.remove('filled-button');
         label3.classList.add('filled-button');
         break;
 
-        case 2100:
+        case 1920:
         arrowLeft.classList.remove('hidden');
-        arrowRight.classList.remove('hidden');
-        label1.classList.remove('filled-button');
-        label2.classList.remove('filled-button');
-        label3.classList.remove('filled-button');
-        label5.classList.remove('filled-button');
-        label4.classList.add('filled-button');
-        break;
-
-        case 2800:
         arrowRight.classList.add('hidden');
         label1.classList.remove('filled-button');
         label2.classList.remove('filled-button');
         label3.classList.remove('filled-button');
-        label4.classList.remove('filled-button');
-        label5.classList.add('filled-button');
+        label4.classList.add('filled-button');
         break;
     }
 })
 
-
 class Navigator {
-    switchImage(label, nav1Btn, nav2Btn, nav3Btn, nav4Btn, nav5Btn) {
-        label.forEach((button) => {
+    slideImages(allNavBtns, nav1Btn, nav2Btn, nav3Btn, nav4Btn) {
+        allNavBtns.forEach( (button) => {
             button.addEventListener('click', (e) => {
+                
                 const element = e.target.id;
-                console.log(element)
                 switch(element) {
                     case 'label1':
                     nav1Btn.classList.add('filled-button');
                     nav2Btn.classList.remove('filled-button');
                     nav3Btn.classList.remove('filled-button');
                     nav4Btn.classList.remove('filled-button');
-                    nav5Btn.classList.remove('filled-button');
+                    arrowLeft.classList.add('hidden');
+                    arrowRight.classList.remove('hidden');
                     break;
 
                     case 'label2':
@@ -109,7 +79,8 @@ class Navigator {
                     nav1Btn.classList.remove('filled-button');
                     nav3Btn.classList.remove('filled-button');
                     nav4Btn.classList.remove('filled-button');
-                    nav5Btn.classList.remove('filled-button');
+                    arrowRight.classList.remove('hidden');
+                    arrowLeft.classList.remove('hidden');
                     break;
 
                     case 'label3':
@@ -117,7 +88,8 @@ class Navigator {
                     nav1Btn.classList.remove('filled-button');
                     nav2Btn.classList.remove('filled-button');
                     nav4Btn.classList.remove('filled-button');
-                    nav5Btn.classList.remove('filled-button');
+                    arrowRight.classList.remove('hidden');
+                    arrowLeft.classList.remove('hidden');
                     break;
 
                     case 'label4':
@@ -125,15 +97,8 @@ class Navigator {
                     nav1Btn.classList.remove('filled-button');
                     nav2Btn.classList.remove('filled-button');
                     nav3Btn.classList.remove('filled-button');
-                    nav5Btn.classList.remove('filled-button');
-                    break;
-
-                    case 'label5':
-                    nav5Btn.classList.add('filled-button');
-                    nav1Btn.classList.remove('filled-button');
-                    nav2Btn.classList.remove('filled-button');
-                    nav3Btn.classList.remove('filled-button');
-                    nav4Btn.classList.remove('filled-button');
+                    arrowRight.classList.add('hidden');
+                    arrowLeft.classList.remove('hidden');
                     break;
                 }
             })
@@ -141,8 +106,8 @@ class Navigator {
     }
 }
 
-const switchButton = new Navigator;
-switchButton.switchImage(navigator, label1,  label2,  label3,  label4,  label5);
+const switchImage = new Navigator;
+switchImage.slideImages(navigators, label1,  label2,  label3,  label4);
 
 
 /*

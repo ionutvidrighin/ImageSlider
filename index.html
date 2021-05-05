@@ -11,33 +11,35 @@
 <body>
 
     <div class="container">
-        
         <div class="image-slider">
             <input type="radio" name="img" id="img1" checked>
             <input type="radio" name="img" id="img2">
             <input type="radio" name="img" id="img3">
             <input type="radio" name="img" id="img4">
-            <input type="radio" name="img" id="img5">
             <img src="./imgs/img1.jpg" alt="image" class="image slide1">
             <img src="./imgs/img2.jpg" alt="image" class="image">
-            <img src="./imgs/img3.jpg" alt="image" class="image">
             <img src="./imgs/img4.jpg" alt="image" class="image">
             <img src="./imgs/img5.jpg" alt="image" class="image">
         </div>
-    </div> 
 
-    <div class="arrows">
-        <i class="fas fa-chevron-circle-left" id="left"></i>
-        <i class="fas fa-chevron-circle-right" id="right"></i>
+        <div class="navigator">
+            <label id="label1" for="img1" class="button"></label>
+            <label id="label2" for="img2" class="button"></label>
+            <label id="label3" for="img3" class="button"></label>
+            <label id="label4" for="img4" class="button"></label>
+        </div>
     </div>
 
-    <div class="navigator">
-        <label id="label1" for="img1" class="button"></label>
-        <label id="label2" for="img2" class="button"></label>
-        <label id="label3" for="img3" class="button"></label>
-        <label id="label4" for="img4" class="button"></label>
-        <label id="label5" for="img5" class="button"></label>
+    <div class="arrows_container">
+        <div class="arrows">
+            <i class="fas fa-chevron-circle-left hidden" id="left"></i>
+            <i class="fas fa-chevron-circle-right" id="right"></i>
+        </div>
     </div>
+    
+
+
+
     
     <script src="/app.js"></script>
 </body>
